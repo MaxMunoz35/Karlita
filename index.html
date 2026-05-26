@@ -16,7 +16,7 @@
             font-family: 'Helvetica Neue', Arial, sans-serif;
             color: #4a0e17;
             text-align: center;
-            overflow-x: hidden; /* Importante para que los corazones no creen barra de desplazamiento */
+            overflow-x: hidden; /* Evita que los corazones generen barras de desplazamiento */
             margin: 0;
             padding: 0;
             position: relative;
@@ -32,7 +32,7 @@
             background-color: #ffeef2;
             margin: 0;
             position: relative;
-            z-index: 100; /* Asegura que esté por encima de todo al inicio */
+            z-index: 100; /* Asegura estar por encima de todo al inicio */
         }
 
         #btn-aniversario {
@@ -58,13 +58,13 @@
         #contenido-principal {
             padding: 20px;
             position: relative;
-            z-index: 10; /* Texto por encima de las fotos flotantes */
+            z-index: 10; /* El texto se mantiene por encima de los corazones de fondo */
         }
 
         .container {
             max-width: 450px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.9); /* Un poco transparente para ver las fotos detrás */
+            background: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente para ver las fotos pasar detrás */
             padding: 30px 20px;
             border-radius: 24px;
             box-shadow: 0 10px 30px rgba(224, 93, 115, 0.2);
@@ -87,49 +87,43 @@
         .hidden-letter { display: none; margin-top: 20px; padding: 25px 20px; background: #fff5f6; border-radius: 16px; border: 1px dashed #ffb3c1; text-align: left; font-size: 15px; line-height: 1.6; color: #5c1d24; animation: fadeIn 0.6s ease-in-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- NUEVO: ESTILOS PARA FOTOS FLOTANTES EN CORAZÓN --- */
+        /* --- FOTOS FLOTANTES EN FORMA DE CORAZÓN --- */
         .photo-heart {
-            width: 80px; /* Tamaño de la foto */
+            width: 80px;
             height: 80px;
-            object-fit: cover; /* Asegura que la foto llene el corazón sin deformarse */
-            position: fixed; /* Flotan sobre la pantalla */
-            bottom: -100px; /* Empiezan fuera de la pantalla por abajo */
-            z-index: 1; /* Fondo, detrás del texto principal */
+            object-fit: cover; /* Mantiene la proporción de la foto dentro del corazón */
+            position: fixed;
+            bottom: -100px; /* Empiezan abajo, fuera de la pantalla */
+            z-index: 1;
             
-            /* Técnica moderna para recortar en forma de corazón perfecto */
+            /* Recorte perfecto en forma de corazón usando CSS moderno */
             clip-path: path("M40 73.1l-3.6-3.3C17.1 52.1 5.2 40.1 5.2 25.5 5.2 13.5 13.4 5.2 25.5 5.2 32.1 5.2 38.6 8.3 42.9 13.3 47.1 8.3 53.6 5.2 60.3 5.2 72.3 5.2 80.6 13.5 80.6 25.5 80.6 40.1 68.6 52.1 52.1 69.8L40 73.1Z");
             
-            /* Animación asignada por JS */
             animation-name: floatUpPhoto;
             animation-timing-function: linear;
-            animation-iteration-count: 1; /* Cada elemento hace la animación una vez y JS lo borra */
-            
-            border: 4px solid white; /* Borde blanco para que resalten */
-            opacity: 0; /* JS manejará la opacidad al crear */
+            animation-iteration-count: 1;
+            opacity: 0;
         }
 
-        /* Animación: sube y desaparece */
+        /* Animación para que suban flotando y balanceándose suavemente */
         @keyframes floatUpPhoto {
             0% { transform: translateY(0) scale(0.8) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; transform: translateY(-10px) scale(1) rotate(5deg); }
+            10% { opacity: 1; transform: translateY(-10px) scale(1) rotate(-5deg); }
             90% { opacity: 1; }
-            100% { transform: translateY(-120vh) scale(1.1) rotate(5deg); opacity: 0; }
+            100% { transform: translateY(-120vh) scale(1.1) rotate(10deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- MÚSICA -->
     <audio id="musica" loop>
         <source src="The Way You Make Me Feel (2012 Remaster).mp3" type="audio/mpeg">
     </audio>
 
-    <!-- PANTALLA 1: BOTÓN INICIAL -->
     <div id="pantalla-inicio">
         <button id="btn-aniversario">Feliz Aniversario 🎉</button>
     </div>
 
-    <!-- PANTALLA 2: TU CONTENIDO ORIGINAL (Oculto al inicio) -->
     <div id="contenido-principal" style="display: none;">
         <div class="container">
             <div class="heart-icon">❤️</div>
@@ -171,7 +165,7 @@
     </div>
 
     <script>
-
+        // --- 1. CONFIGURACIÓN DE LAS 5 FOTOS ---
         const fotosDeNosotros = [
             'foto1.jpg',
             'foto2.jpg',
@@ -180,70 +174,60 @@
             'foto5.jpg'
         ];
 
-        // Elementos HTML
         const botonInicio = document.getElementById('btn-aniversario');
         const pantallaInicio = document.getElementById('pantalla-inicio');
         const contenidoPrincipal = document.getElementById('contenido-principal');
         const musica = document.getElementById('musica');
 
-        // --- 2. LÓGICA DEL BOTÓN INICIAL (Empezar todo) ---
+        // --- 2. LÓGICA AL PRESIONAR EL BOTÓN INICIAL ---
         botonInicio.addEventListener('click', function() {
-            // Ocultamos el botón
             pantallaInicio.style.display = 'none';
-            // Mostramos tu página principal
             contenidoPrincipal.style.display = 'block';
             
-            // Intentamos reproducir música (algunos navegadores requieren interacción)
-            musica.play().catch(error => console.log("Autoplay bloqueado, sonará al tocar la pantalla"));
+            // Reproducir música de fondo automáticamente al interactuar
+            musica.play().catch(error => console.log("El navegador bloqueó la música temporalmente."));
 
-            // ¡EMPEZAR A GENERAR FOTOS FLOTANTES!
+            // Activar la lluvia continua de corazones con fotos
             startPhotoHearts();
         });
 
-        // --- 3. NUEVA FUNCIÓN: CREAR FOTO EN CORAZÓN FLOTANTE ---
+        // --- 3. CREAR UN CORAZÓN FLOTANTE CON UNA FOTO ---
         function createPhotoHeart() {
-            // No creamos nada si no hay fotos configuradas o si son los ejemplos
-            if (fotosDeNosotros.length === 0 || fotosDeNosotros[0] === 'foto1.jpg') {
-                console.log("Necesitas configurar tus fotos en el código JS.");
-                return;
-            }
+            if (fotosDeNosotros.length === 0) return;
 
             const img = document.createElement('img');
             
-            // Elegimos una foto aleatoria de la lista
+            // Selecciona al azar una de tus 5 fotos
             img.src = fotosDeNosotros[Math.floor(Math.random() * fotosDeNosotros.length)];
             img.classList.add('photo-heart');
 
-            // Posición horizontal aleatoria (entre 0% y 85% del ancho de pantalla)
-            img.style.left = Math.random() * 85 + 'vw';
+            // Posición horizontal aleatoria por toda la pantalla (de 0% a 80% del ancho)
+            img.style.left = Math.random() * 80 + 'vw';
 
-            // Tiempo de animación aleatorio (entre 8 y 13 segundos para que suban a distinta velocidad)
-            const duration = Math.random() * 5 + 8;
+            // Velocidades de ascenso aleatorias e independientes (entre 7 y 12 segundos)
+            const duration = Math.random() * 5 + 7;
             img.style.animationDuration = duration + 's';
             
-            // Pequeño retraso aleatorio para que no salgan todos a la vez
-            const delay = Math.random() * 2;
+            // Pequeño desfase de tiempo inicial aleatorio para espaciarlos mejor
+            const delay = Math.random() * 1.5;
             img.style.animationDelay = delay + 's';
 
             document.body.appendChild(img);
 
-            // Importante: Borramos el elemento del código después de que termina su animación
-            // para no ralentizar el celular
-            const totalTimeMs = (duration + delay + 1) * 1000;
+            // Elimina la imagen del navegador al terminar la animación para no consumir memoria del teléfono
             setTimeout(() => {
                 img.remove();
-            }, totalTimeMs);
+            }, (duration + delay + 1) * 1000);
         }
 
-        // --- 4. NUEVA FUNCIÓN: INICIAR EL BUCLE DE FOTOS ---
-        let photoInterval;
+        // --- 4. CONFIGURACIÓN DEL INTERVALO REPETITIVO ---
         function startPhotoHearts() {
-            createPhotoHeart(); // Crea la primera inmediatamente
-            // Crea un corazón nuevo cada 2.5 segundos de forma indefinida
-            photoInterval = setInterval(createPhotoHeart, 2500); 
+            createPhotoHeart(); // Muestra el primero inmediatamente al pulsar el botón
+            // Generará un corazón nuevo en la pantalla cada 2.5 segundos indefinidamente
+            setInterval(createPhotoHeart, 2500); 
         }
 
-        // --- SCRIPT ORIGINAL DE LA CARTA (Corregido ligeros detalles) ---
+        // --- MOSTRAR LA CARTA SORPRESA ---
         function revelarCarta() {
             var carta = document.getElementById('carta');
             if (carta.style.display === 'block') {
