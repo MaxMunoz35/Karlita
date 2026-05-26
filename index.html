@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Karlita ❤️</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
     <style>
         * {
             box-sizing: border-box;
@@ -13,10 +18,11 @@
         
         body {
             background-color: #ffeef2;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            /* Aplicamos la fuente elegante (Lora) para todo el texto general */
+            font-family: 'Lora', serif;
             color: #4a0e17;
             text-align: center;
-            overflow-x: hidden; /* Evita que los corazones generen barras de desplazamiento */
+            overflow-x: hidden;
             margin: 0;
             padding: 0;
             position: relative;
@@ -32,7 +38,7 @@
             background-color: #ffeef2;
             margin: 0;
             position: relative;
-            z-index: 100; /* Asegura estar por encima de todo al inicio */
+            z-index: 100;
         }
 
         #btn-aniversario {
@@ -40,8 +46,9 @@
             color: white;
             border: none;
             padding: 20px 40px;
-            font-size: 22px;
-            font-weight: bold;
+            /* Aplicamos la fuente cursiva (Dancing Script) al botón */
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px; /* Un poco más grande porque la cursiva es más fina */
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
@@ -58,19 +65,27 @@
         #contenido-principal {
             padding: 20px;
             position: relative;
-            z-index: 10; /* El texto se mantiene por encima de los corazones de fondo */
+            z-index: 10;
         }
 
         .container {
             max-width: 450px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente para ver las fotos pasar detrás */
+            background: rgba(255, 255, 255, 0.9);
             padding: 30px 20px;
             border-radius: 24px;
             box-shadow: 0 10px 30px rgba(224, 93, 115, 0.2);
         }
 
-        h1 { font-size: 24px; color: #ff4d6d; margin-bottom: 25px; }
+        /* Título principal con fuente cursiva */
+        h1 { 
+            font-family: 'Dancing Script', cursive;
+            font-size: 36px; 
+            color: #ff4d6d; 
+            margin-bottom: 25px; 
+            line-height: 1.2;
+        }
+        
         .heart-icon { font-size: 50px; animation: beat 1.2s infinite; margin: 10px 0 20px 0; display: inline-block; }
         @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
         .snoopy-img { width: 100%; max-width: 200px; margin: 10px auto 25px auto; display: block; animation: breathe 4s ease-in-out infinite; }
@@ -80,9 +95,18 @@
         .timeline { text-align: left; margin: 30px 0; border-left: 2px solid #ffccd5; padding-left: 15px; margin-left: 10px; }
         .timeline-item { margin-bottom: 25px; position: relative; }
         .timeline-item::before { content: '❤️'; position: absolute; left: -24px; top: 2px; font-size: 12px; background: #ffeef2; padding: 2px; }
-        .timeline-date { font-size: 12px; font-weight: bold; color: #ff4d6d; }
-        .timeline-title { font-size: 16px; font-weight: bold; margin: 3px 0; }
-        .timeline-desc { font-size: 14px; color: #664d52; line-height: 1.4; }
+        .timeline-date { font-size: 12px; font-weight: bold; color: #ff4d6d; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* Títulos de la línea de tiempo en cursiva */
+        .timeline-title { 
+            font-family: 'Dancing Script', cursive;
+            font-size: 26px; 
+            font-weight: bold; 
+            margin: 5px 0; 
+            color: #d81b60;
+        }
+        
+        .timeline-desc { font-size: 15px; color: #664d52; line-height: 1.5; }
         
         /* --- ESTILO DEL CONTADOR --- */
         .contador-box {
@@ -96,33 +120,57 @@
             border: 1px solid #ffccd5;
             font-weight: bold;
             box-shadow: 0 2px 5px rgba(255, 77, 109, 0.05);
+            font-family: 'Helvetica Neue', Arial, sans-serif; /* Mantenemos una fuente clara para los números */
         }
 
         .button-box { margin: 30px 0 10px 0; }
-        .btn { background-color: #ff4d6d; color: white; border: none; padding: 15px 30px; font-size: 16px; font-weight: bold; border-radius: 50px; cursor: pointer; width: 100%; box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4); transition: transform 0.2s, background-color 0.2s; -webkit-tap-highlight-color: transparent; }
+        .btn { 
+            background-color: #ff4d6d; 
+            color: white; 
+            border: none; 
+            padding: 15px 30px; 
+            font-family: 'Lora', serif; /* Botón interior elegante */
+            font-size: 16px; 
+            font-weight: bold; 
+            border-radius: 50px; 
+            cursor: pointer; 
+            width: 100%; 
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4); 
+            transition: transform 0.2s, background-color 0.2s; 
+            -webkit-tap-highlight-color: transparent; 
+        }
         .btn:active { transform: scale(0.98); background-color: #ff758f; }
-        .hidden-letter { display: none; margin-top: 20px; padding: 25px 20px; background: #fff5f6; border-radius: 16px; border: 1px dashed #ffb3c1; text-align: left; font-size: 15px; line-height: 1.6; color: #5c1d24; animation: fadeIn 0.6s ease-in-out forwards; }
+        
+        .hidden-letter { 
+            display: none; 
+            margin-top: 20px; 
+            padding: 25px 20px; 
+            background: #fff5f6; 
+            border-radius: 16px; 
+            border: 1px dashed #ffb3c1; 
+            text-align: left; 
+            font-size: 16px; 
+            line-height: 1.7; 
+            color: #5c1d24; 
+            animation: fadeIn 0.6s ease-in-out forwards; 
+        }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- FOTOS FLOTANTES EN FORMA DE CORAZÓN --- */
         .photo-heart {
             width: 80px;
             height: 80px;
-            object-fit: cover; /* Mantiene la proporción de la foto dentro del corazón */
+            object-fit: cover;
             position: fixed;
-            bottom: -100px; /* Empiezan abajo, fuera de la pantalla */
+            bottom: -100px;
             z-index: 1;
-            
-            /* Recorte perfecto en forma de corazón usando CSS moderno */
             clip-path: path("M40 73.1l-3.6-3.3C17.1 52.1 5.2 40.1 5.2 25.5 5.2 13.5 13.4 5.2 25.5 5.2 32.1 5.2 38.6 8.3 42.9 13.3 47.1 8.3 53.6 5.2 60.3 5.2 72.3 5.2 80.6 13.5 80.6 25.5 80.6 40.1 68.6 52.1 52.1 69.8L40 73.1Z");
-            
             animation-name: floatUpPhoto;
             animation-timing-function: linear;
             animation-iteration-count: 1;
             opacity: 0;
         }
 
-        /* Animación para que suban flotando y balanceándose suavemente */
         @keyframes floatUpPhoto {
             0% { transform: translateY(0) scale(0.8) rotate(0deg); opacity: 0; }
             10% { opacity: 1; transform: translateY(-10px) scale(1) rotate(-5deg); }
@@ -156,7 +204,7 @@
                 <div class="timeline-item">
                     <div class="timeline-date">Un momento inolvidable</div>
                     <div class="timeline-title">Nuestra primera cita 🌳</div>
-                    <div class="timeline-desc">Cuando nos encontramos en ese parque, los nervios, las risas y la certeza de que quería pasar muchísimo más tiempo contigo. Fueron suficioentes para saber que estaba en el lugar correcto que habia deseado por tanto tiempo</div>
+                    <div class="timeline-desc">Cuando nos encontramos en ese parque, los nervios, las risas y la certeza de que quería pasar muchísimo más tiempo contigo. Fueron suficientes para saber que estaba en el lugar correcto que habia deseado por tanto tiempo</div>
                     <div class="contador-box" id="contador-cita">Calculando tiempo...</div>
                 </div>
                 
@@ -185,7 +233,6 @@
     </div>
 
     <script>
-        // --- 1. CONFIGURACIÓN DE LAS 5 FOTOS ---
         const fotosDeNosotros = [
             'foto1.jpg',
             'foto2.jpg',
@@ -199,22 +246,15 @@
         const contenidoPrincipal = document.getElementById('contenido-principal');
         const musica = document.getElementById('musica');
 
-        // --- 2. LÓGICA AL PRESIONAR EL BOTÓN INICIAL ---
         botonInicio.addEventListener('click', function() {
             pantallaInicio.style.display = 'none';
             contenidoPrincipal.style.display = 'block';
             
-            // Reproducir música
             musica.play().catch(error => console.log("El navegador bloqueó la música temporalmente."));
-
-            // Activar la lluvia continua de corazones con fotos
             startPhotoHearts();
-            
-            // Iniciar el contador de tiempo de la cita
             inicializarContador();
         });
 
-        // --- 3. CREAR UN CORAZÓN FLOTANTE CON UNA FOTO ---
         function createPhotoHeart() {
             if (fotosDeNosotros.length === 0) return;
 
@@ -237,36 +277,31 @@
             }, (duration + delay + 1) * 1000);
         }
 
-        // --- 4. CONFIGURACIÓN DEL INTERVALO REPETITIVO ---
         function startPhotoHearts() {
             createPhotoHeart();
             setInterval(createPhotoHeart, 2500); 
         }
 
-        // --- 5. NUEVO SCRIPT: LÓGICA DEL CONTADOR EN TIEMPO REAL ---
         function inicializarContador() {
-            const fechaCita = new Date('2025-01-03T00:00:00'); // Fecha exacta: 3 de Enero del 2025
+            const fechaCita = new Date('2025-01-03T00:00:00'); 
             
             function actualizarContador() {
                 const ahora = new Date();
-                const diferenciaMs = ahora - fechaCita; // Diferencia en milisegundos
+                const diferenciaMs = ahora - fechaCita; 
 
-                // Cálculos matemáticos para pasar de ms a días, horas, minutos y segundos
                 const dias = Math.floor(diferenciaMs / (1000 * 60 * 60 * 24));
                 const horas = Math.floor((diferenciaMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutos = Math.floor((diferenciaMs % (1000 * 60 * 60)) / (1000 * 60));
                 const segundos = Math.floor((diferenciaMs % (1000 * 60)) / 1000);
 
-                // Insertar el texto dentro del contenedor
                 document.getElementById('contador-cita').innerHTML = 
                     `⏱️ Juntos desde hace: ${dias} días, ${horas}h, ${minutos}m y ${segundos}s 💕`;
             }
 
-            actualizarContador(); // Ejecuta una vez de inmediato
-            setInterval(actualizarContador, 1000); // Se actualiza cada 1 segundo
+            actualizarContador(); 
+            setInterval(actualizarContador, 1000); 
         }
 
-        // --- MOSTRAR LA CARTA SORPRESA ---
         function revelarCarta() {
             var carta = document.getElementById('carta');
             if (carta.style.display === 'block') {
