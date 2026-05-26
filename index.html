@@ -10,14 +10,53 @@
             margin: 0;
             padding: 0;
         }
+        
+        /* Ajusté el body para que la pantalla de inicio ocupe todo el espacio */
         body {
             background-color: #ffeef2;
             font-family: 'Helvetica Neue', Arial, sans-serif;
             color: #4a0e17;
-            padding: 20px;
             text-align: center;
             overflow-x: hidden;
+            margin: 0;
+            padding: 0;
         }
+
+        /* ESTILOS NUEVOS: Pantalla de inicio y botón */
+        #pantalla-inicio {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffeef2;
+            margin: 0;
+        }
+
+        #btn-aniversario {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 22px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            transition: transform 0.2s, background-color 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #btn-aniversario:active {
+            transform: scale(0.95);
+            background-color: #ff758f;
+        }
+
+        /* Moví el padding que tenías en el body a este contenedor */
+        #contenido-principal {
+            padding: 20px;
+        }
+
+        /* TUS ESTILOS ORIGINALES */
         .container {
             max-width: 450px;
             margin: 0 auto;
@@ -42,13 +81,11 @@
             50% { transform: scale(1.2); }
         }
         
-        /* Animación natural para Snoopy */
         .snoopy-img {
             width: 100%;
             max-width: 200px;
             margin: 10px auto 25px auto;
             display: block;
-            /* Animación de "respiración" suave */
             animation: breathe 4s ease-in-out infinite;
         }
         @keyframes breathe {
@@ -137,46 +174,62 @@
         <source src="The Way You Make Me Feel (2012 Remaster).mp3" type="audio/mpeg">
     </audio>
 
-    <div class="container">
-        <div class="heart-icon">❤️</div>
-        <h1>Para la persona más especial</h1>
+    <div id="pantalla-inicio">
+        <button id="btn-aniversario">Feliz Aniversario 🎉</button>
+    </div>
 
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-date">El primer día</div>
-                <div class="timeline-title">Cómo empezó todo ✨</div>
-                <div class="timeline-desc">Ese momento en el que nuestras vidas se cruzaron y todo cambió para mejor. (Puedes cambiar este texto por su historia real).</div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">Un momento inolvidable</div>
-                <div class="timeline-title">Nuestra primera cita ☕</div>
-                <div class="timeline-desc">Los nervios, las risas y la certeza de que quería pasar muchísimo más tiempo contigo.</div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">Hoy en día</div>
-                <div class="timeline-title">Lo que somos juntos 👩‍❤️‍👨</div>
-                <div class="timeline-desc">Cada día a tu lado es un regalo, y sigo agradeciendo haberte encontrado. ¡Por muchos momentos más!</div>
-            </div>
-        </div>
+    <div id="contenido-principal" style="display: none;">
+        <div class="container">
+            <div class="heart-icon">❤️</div>
+            <h1>Para la persona más especial</h1>
 
-        <div class="button-box">
-            <button class="btn" onclick="revelarCarta()">Toca aquí para ver tu sorpresa</button>
-        </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">El primer día</div>
+                    <div class="timeline-title">Cómo empezó todo ✨</div>
+                    <div class="timeline-desc">Ese momento en el que nuestras vidas se cruzaron y todo cambió para mejor. (Puedes cambiar este texto por su historia real).</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Un momento inolvidable</div>
+                    <div class="timeline-title">Nuestra primera cita ☕</div>
+                    <div class="timeline-desc">Los nervios, las risas y la certeza de que quería pasar muchísimo más tiempo contigo.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Hoy en día</div>
+                    <div class="timeline-title">Lo que somos juntos 👩‍❤️‍👨</div>
+                    <div class="timeline-desc">Cada día a tu lado es un regalo, y sigo agradeciendo haberte encontrado. ¡Por muchos momentos más!</div>
+                </div>
+            </div>
 
-        <div class="hidden-letter" id="carta">
-            <img src="imagen-removebg-preview.png" alt="Snoopy con flores" class="snoopy-img">
-            
-            Querida Karlita,<br><br>
-            Mi wawi hermosa, quise hacer este regalito especialmente para ti porque las palabras a veces se quedan cortas. Quería darte un detalle único, hecho con mucha dedicación y amor, que refleje un poquito de lo mucho que significas para mí.<br><br>
-            Gracias por tu paciencia, por tus sonrisas, por apoyarme y por hacer que cada día sea más brillante. Eres mi persona favorita en el mundo y este regalito es solo tuyo.<br><br>
-            Te amo millones vida mia, eres la mejor, confia en ti siempre, recuerda que jamas estaras solita y que te amare hasta el fin de mis dias.<br><br>
-            Con todo mi amor,<br>
-            Maxito ❤️
+            <div class="button-box">
+                <button class="btn" onclick="revelarCarta()">Toca aquí para ver tu sorpresa</button>
+            </div>
+
+            <div class="hidden-letter" id="carta">
+                <img src="imagen-removebg-preview.png" alt="Snoopy con flores" class="snoopy-img">
+                
+                Querida Karlita,<br><br>
+                Mi wawi hermosa, quise hacer este regalito especialmente para ti porque las palabras a veces se quedan cortas. Quería darte un detalle único, hecho con mucha dedicación y amor, que refleje un poquito de lo mucho que significas para mí.<br><br>
+                Gracias por tu paciencia, por tus sonrisas, por apoyarme y por hacer que cada día sea más brillante. Eres mi persona favorita en el mundo y este regalito es solo tuyo.<br><br>
+                Te amo millones vida mia, eres la mejor, confia en ti siempre, recuerda que jamas estaras solita y que te amare hasta el fin de mis dias.<br><br>
+                Con todo mi amor,<br>
+                Maxito ❤️
+            </div>
         </div>
     </div>
 
     <script>
-        // Este script hace que la música empiece a sonar apenas ella toque CUALQUIER parte de la pantalla
+        // SCRIPT 1: CAMBIAR PANTALLA AL TOCAR EL BOTÓN
+        const botonInicio = document.getElementById('btn-aniversario');
+        const pantallaInicio = document.getElementById('pantalla-inicio');
+        const contenidoPrincipal = document.getElementById('contenido-principal');
+
+        botonInicio.addEventListener('click', function() {
+            pantallaInicio.style.display = 'none';
+            contenidoPrincipal.style.display = 'block';
+        });
+
+        // SCRIPT 2: REPRODUCIR MÚSICA (Tu código original)
         document.body.addEventListener('click', function() {
             var musica = document.getElementById('musica');
             if (musica.paused) {
@@ -186,14 +239,13 @@
             }
         }, { once: true });
 
-        // Función para mostrar la carta y a Snoopy
+        // SCRIPT 3: MOSTRAR LA CARTA (Tu código original)
         function revelarCarta() {
             var carta = document.getElementById('carta');
             if (carta.style.display === 'block') {
                 carta.style.display = 'none';
             } else {
                 carta.style.display = 'block';
-                // Hace un scroll suave hacia la carta al revelarse
                 setTimeout(function() {
                     carta.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
